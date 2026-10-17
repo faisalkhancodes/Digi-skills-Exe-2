@@ -1,43 +1,452 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Personal Profile - Faisal Khan</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DigiSkills 3.0 Batch-04 - Full Stack Hands-on Exercise No. 2</title>
+  <link rel="stylesheet" href="style.css" />
+  <!-- React and Babel CDN for seamless client-side React execution -->
+  <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 </head>
-
 <body>
-    <div class="container">
-        <h1>Faisal Khan</h1>
+  <div class="main-wrapper">
+    <!-- Header Banner -->
+    <header class="assignment-header">
+      <div>
+        <h1>DigiSkills 3.0 (Batch-04) Full Stack Development</h1>
+        <p>Hands-on Exercise No. 2: JavaScript Order Calculator &amp; ReactJS Product Catalog</p>
+      </div>
+      <div class="batch-badge">
+        <span>🎓 Student Submission Solution</span>
+      </div>
+    </header>
 
-        <section id="about">
-            <h2>About Me</h2>
-            <p>
-                Hello! I am a passionate Full Stack Web Developer and Software Engineering student.
-                I specialize in building responsive, user-friendly, and secure web applications using
-                modern technologies like React, Node.js, and CSS frameworks.
-            </p>
-        </section>
+    <!-- View Switcher Tabs -->
+    <nav class="tab-navigation">
+      <button class="tab-btn active" id="tab-all" onclick="switchView('all')">
+        📋 All Tasks (Combined View)
+      </button>
+      <button class="tab-btn" id="tab-task1" onclick="switchView('task1')">
+        ⚡ Task 1: JS Order Calculator
+      </button>
+      <button class="tab-btn" id="tab-task2" onclick="switchView('task2')">
+        ⚛️ Task 2: ReactJS Product Catalog
+      </button>
+    </nav>
 
-        <section id="skills">
-            <h2>My Skills</h2>
-            <ul>
-                <li>HTML5 & CSS3</li>
-                <li>JavaScript & React.js</li>
-                <li>Tailwind CSS</li>
-                <li>Node.js & Express</li>
-                <li>Git & GitHub</li>
-            </ul>
-        </section>
+    <!-- ====================================================================
+         TASK 1: JAVASCRIPT PRODUCT ORDER CALCULATOR
+         ==================================================================== -->
+    <section class="task-section" id="section-task1">
+      <div class="section-title-bar">
+        <h2 class="section-title">
+          <span>Task 1: JavaScript Product Order Calculator</span>
+          <span class="badge-tag badge-js">Vanilla JS ES6+</span>
+        </h2>
+        <span style="font-size: 0.85rem; color: #64748b;">(Also check F12 DevTools Console)</span>
+      </div>
 
-        <section id="contact">
-            <h2>Contact Info</h2>
-            <p>Email: <a href="mailto:faisal@example.com">faisal@example.com</a></p>
-            <p>GitHub: <a href="https://github.com" target="_blank">github.com</a></p>
-        </section>
-    </div>
+      <div class="task1-grid">
+        <!-- Left: Product List & Controls -->
+        <div class="controls-card">
+          <h3>📦 Given Product Dataset</h3>
+          <table class="product-mini-table">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Product</th>
+                <th>Category</th>
+                <th>Price</th>
+                <th>Stock</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1</td>
+                <td>Laptop</td>
+                <td>Electronics</td>
+                <td>Rs. 85,000</td>
+                <td><span class="stock-tag stock-in">5 in stock</span></td>
+              </tr>
+              <tr>
+                <td>2</td>
+                <td>Mouse</td>
+                <td>Accessories</td>
+                <td>Rs. 1,500</td>
+                <td><span class="stock-tag stock-out">0 (Out of stock)</span></td>
+              </tr>
+              <tr>
+                <td>3</td>
+                <td>Keyboard</td>
+                <td>Accessories</td>
+                <td>Rs. 3,500</td>
+                <td><span class="stock-tag stock-in">10 in stock</span></td>
+              </tr>
+              <tr>
+                <td>4</td>
+                <td>Monitor</td>
+                <td>Electronics</td>
+                <td>Rs. 25,000</td>
+                <td><span class="stock-tag stock-in">3 in stock</span></td>
+              </tr>
+              <tr>
+                <td>5</td>
+                <td>USB Cable</td>
+                <td>Accessories</td>
+                <td>Rs. 700</td>
+                <td><span class="stock-tag stock-in">15 in stock</span></td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="action-buttons">
+            <button class="btn-action btn-primary" onclick="runFilterAvailable()">
+              🔍 1. Filter Available Products (Stock &gt; 0)
+            </button>
+            <button class="btn-action btn-secondary" onclick="runOrderWithDiscount()">
+              💰 2. Calculate Order with 10% Discount (&gt; Rs. 50,000)
+            </button>
+            <button class="btn-action btn-secondary" onclick="runOrderWithoutDiscount()">
+              🧾 3. Calculate Order without Discount (&le; Rs. 50,000)
+            </button>
+          </div>
+        </div>
+
+        <!-- Right: Interactive Console Output Terminal -->
+        <div class="terminal-card">
+          <div class="terminal-header">
+            <div class="terminal-dots">
+              <span class="dot dot-red"></span>
+              <span class="dot dot-yellow"></span>
+              <span class="dot dot-green"></span>
+            </div>
+            <span class="terminal-title">Terminal Console Output</span>
+            <button onclick="clearTerminal()" style="background:none; border:none; color:#94a3b8; cursor:pointer; font-size:0.75rem;">Clear</button>
+          </div>
+          <div class="terminal-body" id="console-terminal">Click any button on the left to run Task 1 functions...</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         TASK 2: REACTJS PRODUCT CATALOG PAGE
+         ==================================================================== -->
+    <section class="task-section" id="section-task2">
+      <div class="section-title-bar">
+        <h2 class="section-title">
+          <span>Task 2: ReactJS Product Catalog Page</span>
+          <span class="badge-tag badge-react">React 18 + Hooks</span>
+        </h2>
+        <span style="font-size: 0.85rem; color: #64748b;">(Components &bull; Props &bull; useState &bull; Grid)</span>
+      </div>
+
+      <!-- React Mount Point -->
+      <div id="react-root"></div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer-info">
+      DigiSkills 3.0 Batch-04 Full Stack Web Development &bull; Hands-on Exercise No. 2 Solution
+    </footer>
+  </div>
+
+  <!-- ====================================================================
+       SCRIPT: TASK 1 JAVASCRIPT IMPLEMENTATION
+       ==================================================================== -->
+  <script>
+    // 1. Given Product Array
+    const products = [
+      { id: 1, name: "Laptop", category: "Electronics", price: 85000, stock: 5 },
+      { id: 2, name: "Mouse", category: "Accessories", price: 1500, stock: 0 },
+      { id: 3, name: "Keyboard", category: "Accessories", price: 3500, stock: 10 },
+      { id: 4, name: "Monitor", category: "Electronics", price: 25000, stock: 3 },
+      { id: 5, name: "USB Cable", category: "Accessories", price: 700, stock: 15 }
+    ];
+
+    // Helper to log both to DevTools console and the on-screen terminal
+    const terminal = document.getElementById("console-terminal");
+    function logToTerminal(message) {
+      console.log(message);
+      terminal.textContent += message + "\n";
+      terminal.scrollTop = terminal.scrollHeight;
+    }
+
+    function clearTerminal() {
+      terminal.textContent = "";
+    }
+
+    /**
+     * Requirement 1: Filter and display only available products whose stock > 0
+     */
+    function getAvailableProducts(items) {
+      return items.filter(product => product.stock > 0);
+    }
+
+    function runFilterAvailable() {
+      clearTerminal();
+      logToTerminal("====================================================");
+      logToTerminal("          AVAILABLE PRODUCTS (STOCK > 0)            ");
+      logToTerminal("====================================================");
+      
+      const available = getAvailableProducts(products);
+      available.forEach((item, index) => {
+        logToTerminal(
+          `${index + 1}. ${item.name.padEnd(12)} | Category: ${item.category.padEnd(12)} | Price: Rs. ${item.price.toLocaleString().padStart(7)} | Stock: ${item.stock}`
+        );
+      });
+      
+      logToTerminal(`\nTotal Available Items: ${available.length} out of ${products.length}`);
+      logToTerminal("(Notice: 'Mouse' was filtered out because stock is 0)\n");
+    }
+
+    /**
+     * Requirement 2: Calculate subtotal, apply 10% discount if subtotal > 50,000, and compute final total
+     */
+    function calculateOrder(orderItems) {
+      const subtotal = orderItems.reduce((acc, item) => {
+        const qty = item.quantity || 1;
+        return acc + (item.price * qty);
+      }, 0);
+
+      const DISCOUNT_THRESHOLD = 50000;
+      const DISCOUNT_PERCENT = 10;
+      let discountAmount = 0;
+      let isDiscountApplied = false;
+
+      if (subtotal > DISCOUNT_THRESHOLD) {
+        discountAmount = (subtotal * DISCOUNT_PERCENT) / 100;
+        isDiscountApplied = true;
+      }
+
+      const finalTotal = subtotal - discountAmount;
+
+      return {
+        items: orderItems,
+        subtotal: subtotal,
+        isDiscountApplied: isDiscountApplied,
+        discountRate: isDiscountApplied ? DISCOUNT_PERCENT : 0,
+        discountAmount: discountAmount,
+        finalTotal: finalTotal
+      };
+    }
+
+    /**
+     * Requirement 3: Print a clean, formatted invoice/order summary in the console
+     */
+    function printInvoice(orderSummary) {
+      const line = "-".repeat(52);
+      const doubleLine = "=".repeat(52);
+
+      logToTerminal(doubleLine);
+      logToTerminal("               DIGISKILLS TECH STORE                ");
+      logToTerminal("                CUSTOMER ORDER INVOICE              ");
+      logToTerminal(doubleLine);
+      logToTerminal(
+        "Item".padEnd(18) +
+        "Qty".padEnd(8) +
+        "Unit Price".padEnd(14) +
+        "Total (Rs.)".padStart(12)
+      );
+      logToTerminal(line);
+
+      orderSummary.items.forEach(item => {
+        const qty = item.quantity || 1;
+        const itemTotal = item.price * qty;
+        logToTerminal(
+          item.name.padEnd(18) +
+          String(qty).padEnd(8) +
+          `Rs. ${item.price.toLocaleString()}`.padEnd(14) +
+          `Rs. ${itemTotal.toLocaleString()}`.padStart(12)
+        );
+      });
+
+      logToTerminal(line);
+      logToTerminal(`Subtotal:`.padEnd(38) + `Rs. ${orderSummary.subtotal.toLocaleString()}`.padStart(14));
+
+      if (orderSummary.isDiscountApplied) {
+        logToTerminal(
+          `Discount (${orderSummary.discountRate}% on orders > Rs. 50k):`.padEnd(38) +
+          `- Rs. ${orderSummary.discountAmount.toLocaleString()}`.padStart(14)
+        );
+      } else {
+        logToTerminal(
+          `Discount (0% - Not eligible for > Rs. 50k):`.padEnd(38) +
+          `Rs. 0`.padStart(14)
+        );
+      }
+
+      logToTerminal(doubleLine);
+      logToTerminal(`FINAL TOTAL PAYABLE:`.padEnd(38) + `Rs. ${orderSummary.finalTotal.toLocaleString()}`.padStart(14));
+      logToTerminal(doubleLine);
+      logToTerminal("        Thank you for shopping with us!             \n");
+    }
+
+    function runOrderWithDiscount() {
+      clearTerminal();
+      logToTerminal(">>> SCENARIO A: Order > Rs. 50,000 (1x Laptop + 1x Monitor)");
+      const order = [
+        { name: "Laptop", price: 85000, quantity: 1 },
+        { name: "Monitor", price: 25000, quantity: 1 }
+      ];
+      const summary = calculateOrder(order);
+      printInvoice(summary);
+    }
+
+    function runOrderWithoutDiscount() {
+      clearTerminal();
+      logToTerminal(">>> SCENARIO B: Order <= Rs. 50,000 (1x Keyboard + 2x USB Cable)");
+      const order = [
+        { name: "Keyboard", price: 3500, quantity: 1 },
+        { name: "USB Cable", price: 700, quantity: 2 }
+      ];
+      const summary = calculateOrder(order);
+      printInvoice(summary);
+    }
+
+    // Auto run first filter on initial load
+    window.addEventListener("DOMContentLoaded", () => {
+      runFilterAvailable();
+    });
+
+    // View tab switching function
+    function switchView(view) {
+      const sectionTask1 = document.getElementById("section-task1");
+      const sectionTask2 = document.getElementById("section-task2");
+      const tabAll = document.getElementById("tab-all");
+      const tabTask1 = document.getElementById("tab-task1");
+      const tabTask2 = document.getElementById("tab-task2");
+
+      tabAll.classList.remove("active");
+      tabTask1.classList.remove("active");
+      tabTask2.classList.remove("active");
+
+      if (view === "all") {
+        sectionTask1.style.display = "block";
+        sectionTask2.style.display = "block";
+        tabAll.classList.add("active");
+      } else if (view === "task1") {
+        sectionTask1.style.display = "block";
+        sectionTask2.style.display = "none";
+        tabTask1.classList.add("active");
+      } else if (view === "task2") {
+        sectionTask1.style.display = "none";
+        sectionTask2.style.display = "block";
+        tabTask2.classList.add("active");
+      }
+    }
+  </script>
+
+  <!-- ====================================================================
+       SCRIPT: TASK 2 REACTJS PRODUCT CATALOG COMPONENT
+       ==================================================================== -->
+  <script type="text/babel">
+    const { useState } = React;
+
+    // Given products dataset for the catalog (At least 4 items rendered via .map)
+    const initialProducts = [
+      { id: 1, name: "Laptop", category: "Electronics", price: 85000, stock: 5 },
+      { id: 2, name: "Mouse", category: "Accessories", price: 1500, stock: 0 },
+      { id: 3, name: "Keyboard", category: "Accessories", price: 3500, stock: 10 },
+      { id: 4, name: "Monitor", category: "Electronics", price: 25000, stock: 3 },
+      { id: 5, name: "USB Cable", category: "Accessories", price: 700, stock: 15 }
+    ];
+
+    /**
+     * Requirement 1 & 4: ProductCard Component
+     * Props: product (object), onAddToCart (function)
+     */
+    function ProductCard({ product, onAddToCart }) {
+      const isOutOfStock = product.stock === 0;
+
+      return (
+        <div className={`product-card ${isOutOfStock ? "out-of-stock" : ""}`}>
+          <div>
+            <div className="product-top-row">
+              <span className="product-category-tag">{product.category}</span>
+              <span className={`product-stock-tag ${isOutOfStock ? "out-stock" : "in-stock"}`}>
+                {isOutOfStock ? "Out of Stock" : `In Stock (${product.stock})`}
+              </span>
+            </div>
+
+            <h4 className="product-name">{product.name}</h4>
+
+            <div className="product-price-box">
+              <span className="price-label">Price</span>
+              <span className="product-price">Rs. {product.price.toLocaleString()}</span>
+            </div>
+          </div>
+
+          <button
+            className="btn-add-to-cart"
+            onClick={() => onAddToCart(product)}
+            disabled={isOutOfStock}
+          >
+            {isOutOfStock ? "⚠️ Out of Stock" : "🛒 Add to Cart"}
+          </button>
+        </div>
+      );
+    }
+
+    /**
+     * Requirement 2 & 3: Main ProductCatalog (App) Component
+     * Manages cartItems state, renders product cards in responsive grid using .map()
+     */
+    function ProductCatalog() {
+      // React useState to manage cart item count
+      const [cartCount, setCartCount] = useState(0);
+
+      // Handler to increase cart count
+      const handleAddToCart = (product) => {
+        if (product.stock > 0) {
+          setCartCount(prevCount => prevCount + 1);
+        }
+      };
+
+      // Handler to reset cart count
+      const handleResetCart = () => {
+        setCartCount(0);
+      };
+
+      return (
+        <div className="catalog-container">
+          {/* Catalog Top Navigation Bar with Cart Badge */}
+          <div className="catalog-nav">
+            <h3>🛍️ Product Catalog Showcase</h3>
+
+            <div className="cart-widget">
+              <div className="cart-badge">
+                <span>🛒 Cart Items</span>
+                <span className="cart-counter">{cartCount}</span>
+              </div>
+
+              {cartCount > 0 && (
+                <button className="btn-reset-cart" onClick={handleResetCart}>
+                  Reset
+                </button>
+              )}
+            </div>
+          </div>
+
+          {/* Requirement 2: Responsive Grid Rendering Product Cards using .map() */}
+          <div className="products-grid">
+            {initialProducts.map((product) => (
+              <ProductCard
+                key={product.id}
+                product={product}
+                onAddToCart={handleAddToCart}
+              />
+            ))}
+          </div>
+        </div>
+      );
+    }
+
+    // Mount the React Application to #react-root
+    const rootElement = document.getElementById("react-root");
+    const root = ReactDOM.createRoot(rootElement);
+    root.render(<ProductCatalog />);
+  </script>
 </body>
-
 </html>

@@ -1,0 +1,17 @@
+{
+  "name": "digiskills-exercise-2",
+  "version": "1.0.0",
+  "description": "DigiSkills 3.0 Batch-04 Full Stack Development Hands-on Exercise No. 2 Solution",
+  "main": "App.jsx",
+  "scripts": {
+    "dev": "node server.js",
+    "start": "node server.js"
+  },
+  "keywords": [
+    "digiskills",
+    "react",
+    "javascript"
+  ],
+  "author": "Faisal Khan",
+  "license": "MIT"
+}

@@ -1,0 +1,371 @@
+/* ==========================================================================
+   DigiSkills 3.0 Batch-04 - Hands-on Exercise No. 2
+   App.css: Complete Styling for Unified Single-File React Component
+   ========================================================================== */
+
+:root {
+  --primary-color: #2563eb;
+  --primary-hover: #1d4ed8;
+  --primary-soft: #eff6ff;
+  --bg-color: #f1f5f9;
+  --surface-color: #ffffff;
+  --text-dark: #0f172a;
+  --text-muted: #64748b;
+  --border-color: #e2e8f0;
+  --success-color: #16a34a;
+  --success-bg: #dcfce7;
+  --danger-color: #dc2626;
+  --danger-bg: #fee2e2;
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.08);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 10px 24px rgba(0, 0, 0, 0.12);
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --transition: all 0.25s ease-in-out;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-dark);
+  line-height: 1.5;
+  padding: 24px 16px;
+}
+
+.app-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* ==========================================================================
+   HEADER BANNER & CART COUNTER WIDGET
+   ========================================================================== */
+.app-header {
+  background: var(--surface-color);
+  border-radius: var(--radius-lg);
+  padding: 24px 30px;
+  box-shadow: var(--shadow-md);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 20px;
+  border-left: 6px solid var(--primary-color);
+}
+
+.header-brand h1 {
+  font-size: 1.7rem;
+  color: var(--text-dark);
+  font-weight: 800;
+  margin-bottom: 4px;
+}
+
+.header-brand p {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+}
+
+.cart-widget {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.cart-counter-pill {
+  background: var(--primary-color);
+  color: white;
+  padding: 10px 18px;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+}
+
+.cart-icon {
+  font-size: 1.1rem;
+}
+
+.cart-badge-number {
+  background: white;
+  color: var(--primary-color);
+  padding: 2px 9px;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 800;
+}
+
+.btn-reset {
+  background: #f8fafc;
+  border: 1px solid var(--border-color);
+  color: var(--danger-color);
+  padding: 8px 14px;
+  border-radius: var(--radius-sm);
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.btn-reset:hover {
+  background: var(--danger-bg);
+  border-color: #fca5a5;
+}
+
+/* ==========================================================================
+   TASK 1 TOOLBAR (CONSOLE TRIGGER)
+   ========================================================================== */
+.task1-toolbar {
+  background: var(--surface-color);
+  border-radius: var(--radius-md);
+  padding: 16px 24px;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-bottom: 20px;
+  border: 1px solid var(--border-color);
+}
+
+.toolbar-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  flex-wrap: wrap;
+}
+
+.task-pill {
+  background: #fef3c7;
+  color: #92400e;
+  font-weight: 700;
+  font-size: 0.8rem;
+  padding: 4px 10px;
+  border-radius: 999px;
+  text-transform: uppercase;
+}
+
+.toolbar-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.btn-toolbar {
+  background: var(--primary-soft);
+  color: var(--primary-color);
+  border: 1px solid rgba(37, 99, 235, 0.25);
+  padding: 8px 14px;
+  border-radius: var(--radius-sm);
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.btn-toolbar:hover {
+  background: var(--primary-color);
+  color: white;
+}
+
+.notice-banner {
+  background: #eff6ff;
+  border-left: 4px solid var(--primary-color);
+  color: #1e40af;
+  padding: 10px 16px;
+  border-radius: var(--radius-sm);
+  font-size: 0.88rem;
+  margin-bottom: 20px;
+}
+
+/* ==========================================================================
+   CATALOG SECTION & RESPONSIVE GRID LAYOUT
+   ========================================================================== */
+.catalog-section {
+  background: var(--surface-color);
+  border-radius: var(--radius-lg);
+  padding: 30px;
+  box-shadow: var(--shadow-md);
+  margin-bottom: 30px;
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+  border-bottom: 2px solid var(--border-color);
+  padding-bottom: 12px;
+}
+
+.section-header h2 {
+  font-size: 1.4rem;
+  color: var(--text-dark);
+  font-weight: 700;
+}
+
+.items-count-tag {
+  background: #f1f5f9;
+  color: var(--text-muted);
+  font-size: 0.82rem;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-weight: 600;
+}
+
+/* Responsive CSS Grid: auto-fills available space with minimum 260px cards */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 22px;
+}
+
+/* ==========================================================================
+   PRODUCT CARD COMPONENT STYLES
+   ========================================================================== */
+.product-card {
+  background: var(--surface-color);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition);
+}
+
+.product-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+  border-color: #cbd5e1;
+}
+
+/* Out of Stock product card variant */
+.product-card.out-of-stock {
+  opacity: 0.75;
+  background-color: #fafafa;
+  border-color: #fca5a5;
+}
+
+.product-card.out-of-stock:hover {
+  transform: none;
+}
+
+.card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 14px;
+}
+
+.category-badge {
+  background: #f1f5f9;
+  color: var(--text-muted);
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 999px;
+  text-transform: uppercase;
+}
+
+.stock-badge {
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 999px;
+}
+
+.stock-badge.in-stock {
+  background: var(--success-bg);
+  color: var(--success-color);
+}
+
+.stock-badge.out-stock {
+  background: var(--danger-bg);
+  color: var(--danger-color);
+}
+
+.card-body {
+  margin-bottom: 20px;
+}
+
+.product-title {
+  font-size: 1.25rem;
+  color: var(--text-dark);
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.price-tag {
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+}
+
+.price-currency {
+  font-size: 0.9rem;
+  color: var(--primary-color);
+  font-weight: 700;
+}
+
+.price-number {
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: var(--primary-color);
+}
+
+/* Add to Cart Button */
+.btn-add-to-cart {
+  width: 100%;
+  padding: 12px 16px;
+  border: none;
+  border-radius: var(--radius-sm);
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  background: var(--primary-color);
+  color: white;
+  transition: var(--transition);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.btn-add-to-cart:hover:not(:disabled) {
+  background: var(--primary-hover);
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+}
+
+/* Disabled state when stock is 0 */
+.btn-add-to-cart:disabled {
+  background: #94a3b8;
+  color: #f1f5f9;
+  cursor: not-allowed;
+  opacity: 0.8;
+  box-shadow: none;
+}
+
+/* ==========================================================================
+   FOOTER
+   ========================================================================== */
+.app-footer {
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  padding: 20px 0 10px;
+}
